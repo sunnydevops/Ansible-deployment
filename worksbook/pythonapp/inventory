@@ -1,0 +1,5 @@
+[web]
+ip-172-31-92-77.ec2.internal
+
+[app]
+ip-172-31-95-63.ec2.internal
