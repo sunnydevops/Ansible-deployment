@@ -23,6 +23,6 @@
     command: "sudo bash {{folderpath}}/nodesource_setup.sh"
   - name: install nodejs
     apt:
-      - name: nodejs
-        state: present
+      name: nodejs
+      state: present
     
