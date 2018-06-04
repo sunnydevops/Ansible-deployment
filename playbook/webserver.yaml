@@ -1,0 +1,25 @@
+---
+- hosts: all
+  become: yes
+  tasks:
+  - name: "Install web server"
+    package:
+    name: "{{ package_name }}"
+    state: present
+  - name: update ubuntu package
+    apt:
+      update_cache: yes
+    when: ansible_os_family == "Debian"
+  - name: update Redhat package
+    yum:
+      update_cache: yes
+    when: ansible_os_family == "RedHat"
+
+  - name: install utilities
+    package:
+      name: "{{item}}"
+      state: present
+    with_items: utilities
+
+
+# ansible-playbook -i "inventory/hosts" webserver.yaml

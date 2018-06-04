@@ -1,0 +1,8 @@
+[Redhat]
+10.10.10.10
+
+[Debian]
+10.10.10.11
+
+# install nginx on
+ 10.20.10.20

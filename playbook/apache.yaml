@@ -1,0 +1,12 @@
+---
+- hosts: apache  # here apache is my group name inside the inventory file
+  become: yes # giving sudo user permission
+  tasks:
+  - name: "Installing apache"
+    apt:
+      name: apache2  # installing apache2
+      state: present
+  - name: "Stopping apache"
+    service:
+      name: apache2
+      state: stopped

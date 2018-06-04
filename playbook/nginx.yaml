@@ -1,0 +1,12 @@
+---
+- hosts: nginx
+  become: yes
+  tasks:
+  - name: "Inatalling ngins"
+    apt:
+      name: nginx
+      state: present
+  - name: "Stop service"
+    service:
+      name: nginx
+      state: stopped

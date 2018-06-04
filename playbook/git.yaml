@@ -1,0 +1,8 @@
+---
+- hosts: all
+  become: yes   # giving sudo permission
+  tasks:
+  - apt:
+      name: git  # Installing git
+      state: present 
+

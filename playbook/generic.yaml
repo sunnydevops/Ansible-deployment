@@ -1,0 +1,12 @@
+---
+- hosts: nginx
+  become: yes
+  tasks:
+  - name:
+    package:  # intead of writing apt $ yum, use package, it will work for both ubuntu and redhat
+      name: tree
+      state: present
+  - name:
+    service:
+      name: tree
+      state: started
