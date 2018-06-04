@@ -6,17 +6,17 @@
     apt:
       update_cache: true
   
-# Node js specific setting
----
+#Node js specific setting
 - hosts: app
   become: yes
   vars:
     folderpath: /home/ansible/nodeapp
   tasks:
   - name: creating  nodesetup directory
-    path: "{{folderpath}}"
-    state: directory
-    mode: 0755
+    file:
+      path: "{{folderpath}}"
+      state: directory
+      mode: 0755
   - name: download shell script file to download nodejs setup file
     command: "curl -sL https://deb.nodesource.com/setup_8.x -o {{folderpath}}/nodesource_setup.sh"
   - name: execute downloades file

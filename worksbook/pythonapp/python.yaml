@@ -1,0 +1,35 @@
+---
+hosts: all
+become: yes
+tasks:
+- name: update system
+  apt:
+    update_cache: true
+
+#python specific setting
+
+- hosts: app
+  become: yes
+  vars:
+    folderpath: /home/ansible/pythonapp
+  tasks:
+  - name: creating pythonapp directory
+    file:
+      path: "{{folderpath}}"
+      state: directory
+      mode: 0755
+  - name: installing git
+    apt:
+      name: git
+      state: present
+  - name: installing pip
+    apt:
+      name: pip
+      state: present
+  - name: install python
+    apt:
+      name: python
+      state: present
+  
+  
+
