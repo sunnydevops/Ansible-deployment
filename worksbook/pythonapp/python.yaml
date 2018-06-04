@@ -22,10 +22,7 @@
     apt:
       name: git
       state: present
-  - name: installing pip
-    apt:
-      name: pip
-      state: present
+  
   - name: install python
     apt:
       name: python
