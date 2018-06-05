@@ -30,4 +30,23 @@
     template:
       src: "templates/hello.js.j2"
       dest: "{{folderpath}}/hello.js"
+  - name: install pm2
+    npm:
+      name: pm2
+      global: yes
+  - name: "start nodejs app"
+    command: "pm2"start {{folderpath}}/hello.js
+
+- hosts: web
+  become: yes
+  vars:
+    webserver_ip: ec2-34-227-176-162.compute-1.amazonaws.com
+    appserver_ip: 172.31.95.63
+  tasks:
+  - name: install nginx
+    apt:
+      name: nginx
+      state: present
+    
+    
     
