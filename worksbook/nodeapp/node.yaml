@@ -35,7 +35,7 @@
       name: pm2
       global: yes
   - name: "start nodejs app"
-    command: "pm2"start {{folderpath}}/hello.js
+    command: pm2 start {{folderpath}}/hello.js
 
 - hosts: web
   become: yes
