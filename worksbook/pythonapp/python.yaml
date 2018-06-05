@@ -4,7 +4,11 @@
   tasks:
   - name: update system
     apt:
-      update_cache: true
+      update_cache: yes
+  - name: upgrade system
+    apt:
+      upgrade: yes
+    
 
 #python specific setting
 
@@ -22,16 +26,36 @@
     apt:
       name: git
       state: present
-  - name: Installing passenger package
-    command: "sudo apt-get install -y dirmngr gnupg"
-    command: "sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys 561F9B9CAC40B2F7"
-    command: "sudo apt-get install -y apt-transport-https ca-certificates"
+  - name: Installing postgreSql
+    apt: 
+      name: {{item}}
+    with_items:
+      - postgresql
+      - libpq-dev
+      - python-psycopg2
 
-  
-  - name: install python
-    apt:
-      name: python
-      state: present
+  - hosts: app
+    become: yes
+    become_user: postgres
+    gather_facts: no
+
+    vars:
+      dbname: myapp
+      dbuser: django
+      dbpassword: django
+    tasks:
+    - name: ensure database is created
+      postgresql_db: name={{dbname}}
+
+    - name: ensure user has access to database
+      postgresql_user: db={{dbname}} name={{dbuser}} password={{dbpassword}} priv=ALL
+
+    - name: ensure user does not have unnecessory privilege
+      postgresql_user: name={{dbuser}} role_attr_flags=NOSUPERUSER,NOCREATEDB
+    - name: ensure np other user can acess the database
+      postgresql_privs: db={{dbname}} role=PUBLIC type=database priv=ALL state=absent
+
+
   
   
 
