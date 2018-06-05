@@ -27,8 +27,7 @@
       name: git
       state: present
   - name: Installing postgreSql
-    apt: 
-      name: {{item}}
+    apt: name:{{item}}
     with_items:
       - postgresql
       - libpq-dev
