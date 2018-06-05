@@ -11,6 +11,7 @@
   become: yes
   vars:
     folderpath: /home/ansible/nodeapp
+    appserverport: 8080
   tasks:
   - name: creating  nodesetup directory
     file:
@@ -25,4 +26,8 @@
     apt:
       name: nodejs
       state: present
+  - name: copy the code
+    template:
+      src: "templates/hello.js.j2"
+      dest: "{{folderpath}}/hello.js"
     
