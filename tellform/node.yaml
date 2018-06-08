@@ -1,5 +1,5 @@
 ---
-- hosts: all
+- hosts: localhost
   become: yes
   tasks:
   - name: update system
@@ -14,7 +14,7 @@
       state: present
     
 
-- hosts: app
+- hosts: localhost
   become: yes
   vars:
     folderpath: /home/ansible/nodeapp
