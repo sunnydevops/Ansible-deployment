@@ -1,0 +1,49 @@
+---
+- hosts: all
+  become: yes
+  tasks:
+  - name: update system
+    apt:
+      update_cache: yes
+  - name: upgrade system
+    apt:
+      upgrade: yes
+  - name: install git
+    apt:
+      name: git
+      state: present
+    
+
+- hosts: app
+    become: yes
+    vars:
+      folderpath: /home/ansible/nodeapp
+    tasks: 
+    - name: install npm
+      apt: 
+        name: npm
+        state: present
+
+    - name: Download shell script file to download node.js setup file
+      command: "curl -sL https://deb.nodesource.com/setup_8.x -o {{folderpath}}/nodesource_setup.sh"
+    - name: Execute downloaded script file
+      command: "sudo bash {{folderpath}}/nodesource_setup.sh" 
+    - name: install node js
+      apt:
+        name: nodejs
+        state: present
+        
+      
+    - name: install grunt
+      npm:
+        name: grunt
+        name: present
+        global: yes
+    - name: install bower
+      npm:
+        name: bower
+        state: present
+        global: yes
+      
+
+    
