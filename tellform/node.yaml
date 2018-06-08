@@ -36,8 +36,8 @@
       name: nodejs
       state: present
   - name: copy the code
-    src: "templates/tellform.j2"
-    dest: "{{npmpath}}/tellform.js"
+      src: "templates/tellform.j2"
+      dest: "{{npmpath}}/tellform.js"
 
   - name: install packages
     command: npm install -g $item
