@@ -1,2 +1,5 @@
 ---
 # defaults file for appserver
+folderpath: /home/ansible/nodeapp
+appserverport: 8080
+app_ip : 172.31.95.63

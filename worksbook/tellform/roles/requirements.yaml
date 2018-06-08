@@ -1,0 +1,4 @@
+# from ansible glaxy for redis server 
+- src: jpnewman.redis
+# from ansible glaxy for mongodb
+- src: nsops.mongodb

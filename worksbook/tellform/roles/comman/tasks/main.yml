@@ -1,2 +1,11 @@
 ---
 # tasks file for comman
+- name: update packages
+  apt:
+    update_cache: yes
+- name: install utilities
+  apt:
+    name: "{{item}}"
+  loop:
+  - git
+  - tree

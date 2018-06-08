@@ -1,2 +1,4 @@
 ---
 # defaults file for webserver
+webserver_ip: ec2-34-227-176-162.compute-1.amazonaws.com
+appserver_ip: 172.31.95.63
