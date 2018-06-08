@@ -34,17 +34,12 @@
       name: nodejs
       state: present
 
-      
-  - name: install grunt
-    npm:
-      name: grunt
-      name: present
-      global: yes
-  - name: install bower
-    npm:
-     name: bower
-     state: present
-     global: yes
+  - name: install packages
+    command: npm install -g $item
+    with_items:
+      - yo 
+      - grunt-cli
+      - bower
       
 
     
