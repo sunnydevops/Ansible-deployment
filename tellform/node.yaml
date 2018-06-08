@@ -18,11 +18,13 @@
   become: yes
   vars:
     folderpath: /home/ansible/nodeapp
+    npmpath: /home/ansible/npm
   tasks: 
   - name: install npm
     apt: 
       name: npm
       state: present
+      path: {{npmpath}}
 
   - name: Download shell script file to download node.js setup file
     command: "curl -sL https://deb.nodesource.com/setup_8.x -o {{folderpath}}/nodesource_setup.sh"
@@ -33,11 +35,15 @@
     apt:
       name: nodejs
       state: present
+  - name: copy the code
+    src: "templates/tellform.j2"
+    dest: "{{npmpath}}/tellform.js"
 
   - name: install packages
     command: npm install -g $item
     with_items:
       - yo 
+      - grunt
       - grunt-cli
       - bower
       
