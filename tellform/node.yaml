@@ -35,7 +35,9 @@
     apt:
       name: nodejs
       state: present
+      
   - name: copy the code
+    template:
       src: "templates/tellform.j2"
       dest: "{{npmpath}}/tellform.js"
 
